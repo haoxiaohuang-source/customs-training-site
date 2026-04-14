@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>進口流程白話版（升級版）</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; color: #1f2937; }
+.header { background: #2563eb; color: white; padding: 30px; }
+.container { max-width: 1000px; margin: auto; }
+.card { background: white; margin: 20px; padding: 20px; border-radius: 10px; }
+.step { background: #eff6ff; border-left: 6px solid #2563eb; padding: 14px 16px; margin: 12px 0; border-radius: 8px; }
+.warn { background: #fff7ed; border-left: 6px solid #f97316; padding: 14px 16px; margin: 12px 0; border-radius: 8px; }
+.danger { background: #fef2f2; border-left: 6px solid #ef4444; padding: 14px 16px; margin: 12px 0; border-radius: 8px; }
+.learn { background: #ecfdf5; border-left: 6px solid #16a34a; padding: 14px 16px; margin: 12px 0; border-radius: 8px; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>進口流程白話版（升級版）</h1>
+    <p>先看整體流程，再去學每一步細節。</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>一句話先懂整體</h2>
+    <div class="learn">
+      先判斷案件 → 接資料 → 確認船務資訊 → 核對文件 → 申報報關 → 追蹤通關 → 放行結案
+    </div>
+    <p>新人先把順序記住，比一次想懂全部更重要。</p>
+  </div>
+
+  <div class="card">
+    <h2>你現在在哪一步？</h2>
+    <div class="grid">
+      <div class="step">
+        <strong>還沒開始</strong><br>
+        先去看 <a href="案件類型.html">案件類型判斷</a>
+      </div>
+      <div class="step">
+        <strong>剛接到資料</strong><br>
+        先確認文件有沒有到齊
+      </div>
+      <div class="step">
+        <strong>文件已收到</strong><br>
+        先核對內容是否一致
+      </div>
+      <div class="step">
+        <strong>已申報</strong><br>
+        繼續追蹤放行、補件、查驗
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>STEP 1：先判斷案件類型</h2>
+    <div class="step">
+      不是所有進口案件都可以直接當一般外貨進口處理。
+    </div>
+    <ul>
+      <li>先確認是不是一般外貨進口</li>
+      <li>如果曾由台灣出口再回來，要注意是否為國貨復運進口</li>
+      <li>特殊案件不要自行判斷</li>
+    </ul>
+    <div class="warn">
+      這一步如果判斷錯，後面全部都可能跟著錯。
+    </div>
+    <p><a href="案件類型.html">前往案件類型判斷</a></p>
+  </div>
+
+  <div class="card">
+    <h2>STEP 2：接到資料後，先確認文件有沒有齊</h2>
+    <div class="step">
+      客戶資料進來後，先確認基本文件。
+    </div>
+    <ul>
+      <li>Invoice</li>
+      <li>Packing List</li>
+      <li>B/L</li>
+      <li>其他案件需要的補充文件</li>
+    </ul>
+    <div class="danger">
+      文件不齊，不要先憑印象做。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>STEP 3：確認船務與到港資訊</h2>
+    <div class="step">
+      接到單後，要確認船期、換單、費用與電放等資訊。
+    </div>
+    <ul>
+      <li>船是否到港</li>
+      <li>D/O 在哪裡換</li>
+      <li>應繳費用</li>
+      <li>是否已電放</li>
+      <li>通關地區是哪裡</li>
+    </ul>
+    <div class="warn">
+      不先確認，後面容易卡在時效或流程。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>STEP 4：核對文件內容</h2>
+    <div class="step">
+      這是最重要的一步。不是看有沒有文件，而是看內容有沒有對起來。
+    </div>
+    <ul>
+      <li>品名是否一致</li>
+      <li>件數是否一致</li>
+      <li>重量是否一致</li>
+      <li>受貨人資料是否正確</li>
+      <li>金額、幣別、貿易條件是否清楚</li>
+      <li>產地是否明確</li>
+    </ul>
+    <div class="danger">
+      文件不一致，不可以直接申報。
+    </div>
+    <p>
+      看不懂文件時：
+      <a href="invoice教學.html">Invoice</a> /
+      <a href="packing教學.html">Packing</a> /
+      <a href="B-L教學.html">B/L</a> /
+      <a href="DO教學.html">D/O</a>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>STEP 5：確認無誤後，進行報關申報</h2>
+    <div class="step">
+      前面資料與文件都確認沒問題後，才進入申報。
+    </div>
+    <ul>
+      <li>依正確文件內容申報</li>
+      <li>注意品名、數量、重量、金額、幣別</li>
+      <li>不要邊做邊猜</li>
+    </ul>
+    <div class="warn">
+      報關不是單純輸入，而是把前面核對好的內容正確送出去。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>STEP 6：追蹤通關結果</h2>
+    <div class="step">
+      申報後還要持續看狀態，不是送出就結束。
+    </div>
+    <ul>
+      <li>是否直接放行</li>
+      <li>是否要補件</li>
+      <li>是否需要查驗</li>
+    </ul>
+    <div class="warn">
+      補件或查驗要即時處理，不能拖。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>STEP 7：放行後通知客戶並結案</h2>
+    <div class="step">
+      確認放行後，通知客戶案件進度，並完成收尾。
+    </div>
+    <ul>
+      <li>確認貨物已放行</li>
+      <li>通知客戶</li>
+      <li>整理案件資料</li>
+      <li>完成結案</li>
+    </ul>
+    <div class="learn">
+      真正做完，不是報出去，而是跑到結案。
+    </div>
+  </div>
+
+  <div class="card" style="border-left:6px solid #ef4444;">
+    <h2>流程中最容易卡住的地方</h2>
+    <ul>
+      <li>案件類型判斷錯誤</li>
+      <li>文件不齊就往下做</li>
+      <li>文件內容不一致還申報</li>
+      <li>有問題沒有即時回報</li>
+      <li>申報後沒有持續追蹤</li>
+    </ul>
+    <p><a href="常見錯誤.html">看常見錯誤頁</a></p>
+  </div>
+
+  <div class="card">
+    <h2>如果你要繼續往下看</h2>
+    <ul>
+      <li><a href="一般外貨進口.html">一般外貨進口（操作版）</a></li>
+      <li><a href="真實案例.html">公司版真實案例（升級版）</a></li>
+      <li><a href="新手.html">回首頁</a></li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>

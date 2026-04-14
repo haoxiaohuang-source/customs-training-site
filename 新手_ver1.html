@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>進口報關新人學習系統 Ver.1</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+  color: #1f2937;
+}
+.header {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: white;
+  padding: 36px 24px;
+}
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px 40px;
+}
+.card {
+  background: white;
+  margin: 20px 0;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.card h2 {
+  margin-top: 0;
+}
+.lead {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.stage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 14px;
+}
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.stage-box {
+  display: block;
+  text-decoration: none;
+  color: #1f2937;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+}
+.stage-box h3 {
+  margin: 0 0 8px 0;
+}
+.stage-box p {
+  margin: 0;
+  line-height: 1.7;
+}
+.stage-1 { border-left: 8px solid #2563eb; }
+.stage-2 { border-left: 8px solid #16a34a; }
+.stage-3 { border-left: 8px solid #f97316; }
+.stage-4 { border-left: 8px solid #7c3aed; }
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 18px 16px;
+  border-radius: 12px;
+  min-height: 84px;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+.link-blue { background: #2563eb; }
+.link-green { background: #16a34a; }
+.link-orange { background: #f97316; }
+.link-red { background: #ef4444; }
+.link-teal { background: #0f766e; }
+.link-purple { background: #7c3aed; }
+
+.note {
+  background: #eff6ff;
+  border-left: 6px solid #2563eb;
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-top: 14px;
+}
+.goal {
+  background: #ecfdf5;
+  border-left: 6px solid #16a34a;
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-top: 14px;
+}
+.warn {
+  background: #fff7ed;
+  border-left: 6px solid #f97316;
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-top: 14px;
+}
+.danger {
+  background: #fef2f2;
+  border-left: 6px solid #ef4444;
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-top: 14px;
+}
+ul {
+  line-height: 1.9;
+  padding-left: 20px;
+}
+.footer {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  padding: 10px 0 30px;
+}
+@media (max-width: 900px) {
+  .stage-grid,
+  .link-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>進口報關新人學習系統</h1>
+    <p class="lead">這一版不是把全部內容攤開，而是依照新人學習階段，告訴你現在應該先看哪一塊。</p>
+    <p class="lead">重點不是一次學會，而是先建立順序感：先看懂、再看文件、再開始做、最後才碰進階內容。</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>你現在在第幾階段？</h2>
+    <div class="stage-grid">
+      <a class="stage-box stage-1" href="新人3天學習路線.html">
+        <h3>第一階段｜Day 1–3</h3>
+        <p>先看懂整體，不急著做事。先學習路線、案件判斷、流程大方向。</p>
+      </a>
+      <a class="stage-box stage-2" href="invoice教學.html">
+        <h3>第二階段｜Day 4–7</h3>
+        <p>開始接觸文件。先看 Invoice、Packing、B/L、D/O，培養辨識能力。</p>
+      </a>
+      <a class="stage-box stage-3" href="一般外貨進口.html">
+        <h3>第三階段｜Day 7–14</h3>
+        <p>開始照流程做。進入一般外貨進口操作版，理解每一步順序。</p>
+      </a>
+      <a class="stage-box stage-4" href="稅金計算.html">
+        <h3>第四階段｜14天後</h3>
+        <p>再碰進階內容。包括稅金計算、特殊案件與更多實務判斷。</p>
+      </a>
+    </div>
+    <div class="note">
+      如果你完全是第一次接觸，建議從第一階段開始，不要直接跳到工具或計算頁。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>第一階段先看這些</h2>
+    <div class="link-grid">
+      <a class="link-btn link-blue" href="新人3天學習路線.html">新人 3 天學習路線</a>
+      <a class="link-btn link-teal" href="案件類型.html">案件類型判斷</a>
+      <a class="link-btn link-green" href="流程版.html">進口流程白話版</a>
+      <a class="link-btn link-red" href="常見錯誤.html">常見錯誤</a>
+    </div>
+    <div class="goal">
+      第一階段目標：先知道「現在在做什麼」，不要急著自己判斷。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>第二階段開始看文件</h2>
+    <div class="link-grid">
+      <a class="link-btn link-green" href="invoice教學.html">Invoice 教學</a>
+      <a class="link-btn link-purple" href="packing教學.html">Packing List 教學</a>
+      <a class="link-btn link-blue" href="B-L教學.html">B/L 教學</a>
+      <a class="link-btn link-red" href="DO教學.html">D/O 教學</a>
+    </div>
+    <div class="warn">
+      文件格式會變，但欄位邏輯不會變。網站是教你看欄位，不是教你背版型。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>第三階段開始照流程做</h2>
+    <div class="link-grid">
+      <a class="link-btn link-teal" href="一般外貨進口.html">一般外貨進口（操作版）</a>
+      <a class="link-btn link-orange" href="真實案例.html">公司版真實案例</a>
+    </div>
+    <div class="note">
+      這一階段才開始把文件、流程、錯誤提醒串起來。重點是照流程走，不要自己改流程。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>第四階段再看進階內容</h2>
+    <div class="link-grid">
+      <a class="link-btn link-teal" href="稅金計算.html">進口稅金計算（操作版）</a>
+      <a class="link-btn link-orange" href="自動算稅.html">自動算稅版</a>
+      <a class="link-btn link-purple" href="國貨復運進口.html">國貨復運進口</a>
+      <a class="link-btn link-red" href="進口 WI-02 進口業務處理工作指導書.pdf">WI-02 正式文件</a>
+    </div>
+    <div class="danger">
+      進階內容不是第一天就要用。先有基本流程感，再進來看這些，效果會比較好。
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Ver.1｜階段式首頁版本
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>案件類型判斷</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; }
+.header { background: #0f766e; color: white; padding: 30px; }
+.container { max-width: 1000px; margin: auto; }
+.card { background: white; margin: 20px; padding: 20px; border-radius: 10px; }
+.btn { display:block; margin:10px 0; padding:15px; border-radius:8px; text-decoration:none; font-weight:bold; text-align:center; }
+.green { background:#16a34a; color:white; }
+.orange { background:#f97316; color:white; }
+.red { background:#ef4444; color:white; }
+.note { margin-top:10px; color:#555; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>案件類型判斷</h1>
+    <p>先判斷案件，再決定怎麼做。</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>第一步：這票貨是否曾經從台灣出口？</h2>
+    <a class="btn green" href="#step2-no">沒有 → 繼續判斷</a>
+    <a class="btn orange" href="#result-return">有 → 可能是國貨復運進口</a>
+  </div>
+
+  <div class="card" id="step2-no">
+    <h2>第二步：是否為正常買賣進口？</h2>
+    <a class="btn green" href="#result-normal">是 → 一般外貨進口</a>
+    <a class="btn orange" href="#result-special">不是 → 可能是特殊案件</a>
+  </div>
+
+  <div class="card" id="result-normal">
+    <h2>判斷結果：一般外貨進口</h2>
+    <p>這是新人最常處理的案件。</p>
+    <a class="btn green" href="一般外貨進口.html">進入教學</a>
+  </div>
+
+  <div class="card" id="result-return">
+    <h2>判斷結果：國貨復運進口</h2>
+    <p>需確認原出口資料，不可當一般案件處理。</p>
+    <a class="btn orange" href="國貨復運進口.html">進入教學</a>
+  </div>
+
+  <div class="card" id="result-special">
+    <h2>判斷結果：特殊案件</h2>
+    <p>此類案件風險較高，請先詢問主管或資深同仁。</p>
+    <div class="btn red">不要自行判斷</div>
+  </div>
+
+  <div class="card" style="border-left:6px solid #ef4444;">
+    <h2>判斷原則</h2>
+    <ul>
+      <li>不確定時，不要猜</li>
+      <li>涉及復運、加工、特殊條件，一律先問</li>
+      <li>文件與實際不一致時，不可直接申報</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
