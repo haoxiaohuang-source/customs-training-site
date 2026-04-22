@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動算稅版</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+  color: #1f2937;
+}
+.header {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: white;
+  padding: 36px 24px;
+}
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 20px 40px;
+}
+.card {
+  background: white;
+  margin: 20px 0;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+button {
+  border: none;
+  background: #ea580c;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+}
+button:hover {
+  opacity: 0.92;
+}
+.secondary {
+  background: #6b7280;
+}
+.note {
+  background: #eff6ff;
+  border-left: 6px solid #2563eb;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+.warn {
+  background: #fff7ed;
+  border-left: 6px solid #f97316;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+.result {
+  background: #ecfdf5;
+  border-left: 6px solid #16a34a;
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px 0;
+  gap: 20px;
+}
+.result-row:last-child {
+  border-bottom: none;
+}
+.result-label {
+  font-weight: bold;
+}
+.big {
+  font-size: 20px;
+  font-weight: bold;
+}
+a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}
+.small {
+  color: #6b7280;
+  font-size: 14px;
+}
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr; }
+  .result-row { flex-direction: column; gap: 6px; }
+}
+</style>
+<link rel="stylesheet" href="global.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>自動算稅版</h1>
+    <p>先懂順序，再用工具。這一頁是拿來練習，不是拿來取代判斷。</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>輸入資料</h2>
+    <div class="grid">
+      <div>
+        <label for="cif">CIF 金額（外幣）</label>
+        <input id="cif" type="number" step="0.0001" placeholder="例如：1000">
+      </div>
+      <div>
+        <label for="rate">匯率</label>
+        <input id="rate" type="number" step="0.0001" placeholder="例如：32">
+      </div>
+      <div>
+        <label for="dutyRate">進口稅率（%）</label>
+        <input id="dutyRate" type="number" step="0.0001" placeholder="例如：5">
+      </div>
+      <div>
+        <label for="commodityRate">貨物稅率（%）</label>
+        <input id="commodityRate" type="number" step="0.0001" placeholder="沒有就填 0">
+      </div>
+    </div>
+
+    <div class="note">
+      計算順序：完稅價格 → 進口稅 → 貨物稅 → 營業稅 → 貿易推廣費 → 合計
+    </div>
+
+    <div style="margin-top:16px;">
+      <button onclick="calculateTax()">開始計算</button>
+      <button class="secondary" onclick="resetForm()">清除</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>計算結果</h2>
+    <div id="resultBox" class="result">
+      <div class="result-row">
+        <div class="result-label">狀態</div>
+        <div>請先輸入資料後按「開始計算」</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>使用提醒</h2>
+    <div class="warn">
+      1. 稅率一定要先確認，不要自己猜。<br>
+      2. 營業稅不是只用完稅價格 × 5%。<br>
+      3. 有貨物稅時，要先加進去再算營業稅。<br>
+      4. 貿易推廣費不足 100 元不計。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>返回 / 延伸查看</h2>
+    <ul>
+      <li><a href="稅金計算.html">回稅金計算教學版</a></li>
+      <li><a href="第四階段學習_ver3.html">回第四階段學習</a></li>
+      <li></li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+function round2(num) {
+  return Math.round((num + Number.EPSILON) * 100) / 100;
+}
+
+function formatMoney(num) {
+  return round2(num).toLocaleString('zh-TW', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+function calculateTax() {
+  const cif = parseFloat(document.getElementById('cif').value);
+  const rate = parseFloat(document.getElementById('rate').value);
+  const dutyRateInput = parseFloat(document.getElementById('dutyRate').value);
+  const commodityRateInput = parseFloat(document.getElementById('commodityRate').value || '0');
+
+  if (isNaN(cif) || isNaN(rate) || isNaN(dutyRateInput)) {
+    document.getElementById('resultBox').innerHTML = `
+      <div class="result-row">
+        <div class="result-label">錯誤</div>
+        <div>請至少填入 CIF 金額、匯率、進口稅率。</div>
+      </div>
+    `;
+    return;
+  }
+
+  const dutyRate = dutyRateInput / 100;
+  const commodityRate = commodityRateInput / 100;
+
+  const customsValue = cif * rate;
+  const importDuty = customsValue * dutyRate;
+  const commodityTax = (customsValue + importDuty) * commodityRate;
+  const businessTax = (customsValue + importDuty + commodityTax) * 0.05;
+
+  let tradePromotionFeeRaw = customsValue * 0.0004;
+  let tradePromotionFee = tradePromotionFeeRaw < 100 ? 0 : tradePromotionFeeRaw;
+
+  const totalTax = importDuty + commodityTax + businessTax + tradePromotionFee;
+
+  document.getElementById('resultBox').innerHTML = `
+    <div class="result-row">
+      <div class="result-label">完稅價格</div>
+      <div>NT$ ${formatMoney(customsValue)}</div>
+    </div>
+    <div class="result-row">
+      <div class="result-label">進口稅</div>
+      <div>NT$ ${formatMoney(importDuty)}</div>
+    </div>
+    <div class="result-row">
+      <div class="result-label">貨物稅</div>
+      <div>NT$ ${formatMoney(commodityTax)}</div>
+    </div>
+    <div class="result-row">
+      <div class="result-label">營業稅</div>
+      <div>NT$ ${formatMoney(businessTax)}</div>
+    </div>
+    <div class="result-row">
+      <div class="result-label">貿易推廣費</div>
+      <div>NT$ ${formatMoney(tradePromotionFee)}</div>
+    </div>
+    <div class="result-row big">
+      <div class="result-label">稅金合計</div>
+      <div>NT$ ${formatMoney(totalTax)}</div>
+    </div>
+    <div class="small" style="margin-top:12px;">
+      本頁為教學練習工具，實際申報仍要依正確文件、條件、稅率與案件內容確認。
+    </div>
+  `;
+}
+
+function resetForm() {
+  document.getElementById('cif').value = '';
+  document.getElementById('rate').value = '';
+  document.getElementById('dutyRate').value = '';
+  document.getElementById('commodityRate').value = '';
+  document.getElementById('resultBox').innerHTML = `
+    <div class="result-row">
+      <div class="result-label">狀態</div>
+      <div>請先輸入資料後按「開始計算」</div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
