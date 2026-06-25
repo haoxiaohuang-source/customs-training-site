@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>海關稅則查找與分類</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; color: #1f2937; }
+.header { background: #0f766e; color: white; padding: 30px; }
+.container { max-width: 1000px; margin: auto; }
+.card { background: white; margin: 20px; padding: 20px; border-radius: 10px; }
+.section-lead { line-height:1.8; color:#4b5563; }
+.lesson-tag { display:inline-block; background:#ccfbf1; color:#115e59; padding:6px 12px; border-radius:999px; font-weight:bold; margin-bottom:12px; }
+.step { background:#ecfdf5; border-left:6px solid #16a34a; padding:12px 16px; margin:12px 0; border-radius:8px; }
+.note { background:#eff6ff; border-left:6px solid #2563eb; padding:12px 16px; margin:12px 0; border-radius:8px; }
+.warn { background:#fff7ed; border-left:6px solid #f97316; padding:12px 16px; margin:12px 0; border-radius:8px; }
+.danger { background:#fef2f2; border-left:6px solid #ef4444; padding:12px 16px; margin:12px 0; border-radius:8px; }
+.check { background:#f5f3ff; border-left:6px solid #7c3aed; padding:12px 16px; margin:12px 0; border-radius:8px; }
+.grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin-top:14px; }
+.mini { border:1px solid #e5e7eb; border-radius:8px; padding:14px; background:#ffffff; }
+.mini h3 { margin:0 0 8px; color:#0f766e; }
+.flow { display:grid; grid-template-columns:repeat(6, 1fr); gap:10px; margin-top:16px; }
+.flow-item { position:relative; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:14px 10px; text-align:center; min-height:94px; box-sizing:border-box; }
+.flow-item strong { display:block; color:#0f766e; margin-bottom:8px; }
+.flow-item span { display:block; font-size:13px; line-height:1.5; color:#4b5563; }
+.flow-item:after { content:""; position:absolute; right:-10px; top:42px; width:10px; height:2px; background:#94a3b8; }
+.flow-item:last-child:after { display:none; }
+.tariff-sample { background:#0f172a; color:white; border-radius:8px; padding:18px; margin:16px 0; text-align:center; }
+.tariff-code { font-size:34px; font-weight:bold; letter-spacing:1px; word-break:break-word; }
+.code-row { display:grid; grid-template-columns:1.2fr 1.2fr 1.2fr 1.8fr .9fr; gap:8px; margin:14px 0; }
+.code-box { background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:12px; text-align:center; }
+.code-box strong { display:block; color:#0f766e; font-size:20px; margin-bottom:4px; }
+.code-box small { display:block; color:#64748b; line-height:1.5; }
+.compare-table { width:100%; border-collapse:collapse; margin-top:14px; overflow:hidden; border-radius:8px; }
+.compare-table th, .compare-table td { border:1px solid #e5e7eb; padding:12px; text-align:left; vertical-align:top; line-height:1.7; }
+.compare-table th { background:#0f766e; color:white; }
+.compare-table td:nth-child(2) { background:#fff7ed; }
+.compare-table td:nth-child(3) { background:#ecfdf5; }
+.traffic { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:14px; }
+.signal { border-radius:8px; padding:14px; border:1px solid #e5e7eb; }
+.signal strong { display:block; font-size:20px; margin-bottom:8px; }
+.green { background:#ecfdf5; border-color:#86efac; }
+.yellow { background:#fff7ed; border-color:#fdba74; }
+.red { background:#fef2f2; border-color:#fca5a5; }
+.principle-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin-top:14px; }
+.principle-card { background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:14px; }
+.principle-card strong { display:block; color:#0f766e; margin-bottom:8px; }
+.rule-list { display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-top:14px; }
+.rule-card { border:1px solid #e5e7eb; border-radius:8px; padding:14px; background:#ffffff; }
+.rule-card strong { display:block; color:#0f766e; margin-bottom:8px; }
+.rule-card p { margin:0; line-height:1.7; }
+details.quiz { border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; margin:10px 0; background:#f8fafc; }
+details.quiz summary { cursor:pointer; font-weight:bold; color:#0f766e; }
+details.quiz p { line-height:1.8; margin-bottom:0; }
+ul, ol { line-height: 1.9; }
+a { color:#0f766e; }
+@media (max-width: 760px) {
+  .grid, .code-row, .flow, .traffic, .principle-grid, .rule-list { grid-template-columns:1fr; }
+  .flow-item:after { display:none; }
+  .tariff-code { font-size:26px; }
+  .compare-table { display:block; overflow-x:auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <span class="lesson-tag">進階知識</span>
+    <h1>海關稅則查找與分類</h1>
+    <p>先看懂貨品，再查稅則；查到號列後，還要確認稅率、輸入規定與申報風險。</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>新人要先學會什麼？</h2>
+    <div class="note">
+      目標不是讓新人馬上獨立判定稅則，而是先建立正確查詢順序：收資料、查可能號列、比對分類依據、確認稅率與輸入規定、留下判斷紀錄。
+    </div>
+    <div class="grid">
+      <div class="mini">
+        <h3>會查</h3>
+        <p>知道從官方查詢系統找貨品分類號列、稅率與輸入規定。</p>
+      </div>
+      <div class="mini">
+        <h3>會問</h3>
+        <p>知道品名不足時，要補問材質、用途、規格、成分與型錄。</p>
+      </div>
+      <div class="mini">
+        <h3>會比對</h3>
+        <p>知道類註、章註、節名和案例不能跳過。</p>
+      </div>
+      <div class="mini">
+        <h3>會停下來</h3>
+        <p>知道稅則不確定、稅率差異大或涉及管制時要回報。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>先記住一句話</h2>
+    <div class="note">
+      稅則不是只看中文品名。要看材質、用途、功能、規格、加工狀態、組成成分與實際來貨。
+    </div>
+    <div class="danger">
+      新人不可以只用客戶給的品名直接申報稅則；查詢結果也不能當作最終判定，實際仍以海關核定為準。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>稅則號列怎麼看？</h2>
+    <p class="section-lead">我國貨品分類號列可以先用「前 6 碼國際 HS 架構」理解，再往後看關稅碼、統計碼與檢查碼。下面用範例號列拆給新人看。</p>
+    <div class="tariff-sample">
+      <div class="tariff-code">8531.10.00.00-5</div>
+      <div>範例：防盜器或類似信號設備相關號列示意</div>
+    </div>
+    <div class="code-row">
+      <div class="code-box">
+        <strong>85</strong>
+        章
+        <small>先看大類別</small>
+      </div>
+      <div class="code-box">
+        <strong>31</strong>
+        節
+        <small>再看貨品群</small>
+      </div>
+      <div class="code-box">
+        <strong>10</strong>
+        目
+        <small>比對功能或用途</small>
+      </div>
+      <div class="code-box">
+        <strong>00.00</strong>
+        國內細分碼
+        <small>看稅率與輸入規定</small>
+      </div>
+      <div class="code-box">
+        <strong>5</strong>
+        檢查碼
+        <small>系統檢核用</small>
+      </div>
+    </div>
+    <div class="warn">
+      查稅則時不要只看搜尋結果第一筆。各類、章通常有類註與章註，會影響分類結果。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>稅則分類不是查關鍵字而已</h2>
+    <p class="section-lead">HS 分類有兩個基本觀念：一件貨品只會有一個適當稅則號列；任何貨品都應該依完整特性找到適當分類。新人查稅則時，不能只看品名像不像，而是要先看貨品本身。</p>
+    <div class="principle-grid">
+      <div class="principle-card">
+        <strong>一物一號列</strong>
+        每一項貨品都要找出最適合的稅則號列，不能同一貨品任意套用多個號列。
+      </div>
+      <div class="principle-card">
+        <strong>完整性判斷</strong>
+        即使是未完成品、拆散進口或成套進口，也要看是否已具備主要特性。
+      </div>
+      <div class="principle-card">
+        <strong>材質取向</strong>
+        先問組成成分、外觀形狀、製造方法、加工程度，例如天然物質、原料、材料、製品。
+      </div>
+      <div class="principle-card">
+        <strong>功能取向</strong>
+        再問機械特性、電氣特性、光學特性、用途、操作原理，以及是否屬零附件。
+      </div>
+    </div>
+    <div class="warn">
+      看到 parts、set、accessory、sample、material 這類籠統品名時，先補資料，不要直接用關鍵字查到哪個就報哪個。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>HS 歸則新人版</h2>
+    <p class="section-lead">歸則是分類時的判斷順序。新人不需要背法條文字，但要知道遇到不同情況時，應該往哪個方向判斷。</p>
+    <div class="rule-list">
+      <div class="rule-card">
+        <strong>歸則一：先看文字與註解</strong>
+        <p>先依稅則號列文字、類註、章註判斷。類名、章名只能幫助查找，不能直接當分類依據。</p>
+      </div>
+      <div class="rule-card">
+        <strong>歸則二：未完成品與混合物</strong>
+        <p>未完成品若已有完整品主要特性，可能按完整品分類；材料或物質也包含混合物、合成物。</p>
+      </div>
+      <div class="rule-card">
+        <strong>歸則三：多個號列都可能時</strong>
+        <p>先選較具體明確的號列；成套或組合品看主要特性；仍無法判斷時，才依後列號列處理。</p>
+      </div>
+      <div class="rule-card">
+        <strong>歸則四：找最相近的貨品</strong>
+        <p>如果沒有適當可歸列方式，才依性質最類似的貨品號列判斷，避免漏列。</p>
+      </div>
+      <div class="rule-card">
+        <strong>歸則五：包裝與容器</strong>
+        <p>特殊形狀且隨貨長期使用的容器，可能跟主貨同號列；可重複使用容器或一般包裝，可能要分開判斷。</p>
+      </div>
+      <div class="rule-card">
+        <strong>歸則六：同一節內再細分</strong>
+        <p>節名確定後，還要依同層級子目文字與相關註解往下細分，不能只停在前四碼或六碼。</p>
+      </div>
+    </div>
+    <div class="check">
+      簡單記法：先看文字與註解，再看是否未完成、混合、成套、包裝、零附件，最後才往細號列拆。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>查詢前先收資料</h2>
+    <div class="step">
+      至少先問清楚：
+      <ul>
+        <li>貨品中文與英文名稱</li>
+        <li>材質、成分比例、加工狀態</li>
+        <li>用途、功能、使用對象</li>
+        <li>型號、規格、尺寸、功率、容量或關鍵參數</li>
+        <li>品牌、製造商、型錄、照片、成分表或 MSDS</li>
+      </ul>
+    </div>
+    <div class="warn">
+      如果文件只有簡稱或商業名稱，先請客戶補資料。資料不清楚時，不要硬查、不要硬填。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>稅則查找流程</h2>
+    <div class="flow">
+      <div class="flow-item">
+        <strong>1 收資料</strong>
+        <span>品名、材質、用途、規格、型錄</span>
+      </div>
+      <div class="flow-item">
+        <strong>2 查號列</strong>
+        <span>用關鍵字找可能分類</span>
+      </div>
+      <div class="flow-item">
+        <strong>3 看註解</strong>
+        <span>類註、章註、節名不能跳過</span>
+      </div>
+      <div class="flow-item">
+        <strong>4 排除</strong>
+        <span>說明為什麼不是其他號列</span>
+      </div>
+      <div class="flow-item">
+        <strong>5 查規定</strong>
+        <span>稅率、輸入規定、簽審</span>
+      </div>
+      <div class="flow-item">
+        <strong>6 留紀錄</strong>
+        <span>不確定就問主管或預先歸列</span>
+      </div>
+    </div>
+    <div class="check">
+      好的稅則判斷要能說出「為什麼是這個號列」，也要能說出「為什麼不是旁邊那幾個號列」。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>常見分類判斷案例</h2>
+    <p class="section-lead">稅則分類不能只靠直覺或品名。下面用常見情境對照，幫新人先建立「看依據」的習慣。</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>貨品案例</th>
+          <th>新人常見直覺</th>
+          <th>正確判斷方向</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>車用防盜器組</td>
+          <td>車上用的，所以歸車輛零附件。</td>
+          <td>先看功能。若屬音響或視覺信號器具，要往信號設備相關節名比對。</td>
+        </tr>
+        <tr>
+          <td>車用鋼鐵製螺栓、螺帽組</td>
+          <td>汽車用零件，所以歸車輛零附件。</td>
+          <td>先看類註。一般用金屬製零件可能被排除，回到鋼鐵製螺栓螺帽類別。</td>
+        </tr>
+        <tr>
+          <td>耶誕節用蠟燭</td>
+          <td>耶誕節用品，所以歸節慶用品。</td>
+          <td>先看章註。若章註排除蠟燭，要回到蠟燭及類似品分類。</td>
+        </tr>
+        <tr>
+          <td>拆散或未完整貨品</td>
+          <td>少了零件，就不能算完整品。</td>
+          <td>看是否已具備成品主要特性；同批拆散進口也可能按完整品分類。</td>
+        </tr>
+        <tr>
+          <td>成套商品</td>
+          <td>一盒裡有多種東西，就全部分開報。</td>
+          <td>先看是否為成套商品，再判斷主要特性；若不是成套商品，才分開歸類。</td>
+        </tr>
+        <tr>
+          <td>包裝、盒子、容器</td>
+          <td>跟貨一起來，就一定跟主貨同稅則。</td>
+          <td>特殊形狀且長期搭配主貨使用者可能跟主貨走；可重複使用容器或一般容器要另行判斷。</td>
+        </tr>
+        <tr>
+          <td>零附件</td>
+          <td>只要是某機器用的，就歸那台機器的零件。</td>
+          <td>先看類章註是否排除，再看是否專用或主要用、是否具備機械/電氣/光學特性。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>查到稅則後還要看什麼？</h2>
+    <ul>
+      <li>稅率：進口稅率是否為免稅、從價、從量或特別規定</li>
+      <li>輸入規定：是否需要簽審、檢驗、檢疫或其他主管機關文件</li>
+      <li>貨物稅：是否屬應課貨物稅品項</li>
+      <li>統計方式與單位：數量單位是否和文件一致</li>
+      <li>產地與優惠稅率：是否涉及原產地證明或 ECA/FTA 適用條件</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>稅則預先歸列什麼時候用？</h2>
+    <div class="note">
+      如果貨品分類爭議大、稅率差異大、進口前就需要評估成本，或客戶希望降低通關爭議，可以考慮向海關申請稅則預先歸列。
+    </div>
+    <div class="step">
+      申請時通常要準備申請書、原廠型錄、規格資料，必要時提供樣品。原則上一份申請書只申請一項貨物。
+    </div>
+    <div class="warn">
+      已經報運進口、正在行政救濟或海關認定不適合預先審核的貨物，可能不受理。
+    </div>
+  </div>
+
+  <div class="card" style="border-left:6px solid #ef4444;">
+    <h2>紅黃綠判斷卡</h2>
+    <div class="traffic">
+      <div class="signal green">
+        <strong>綠燈：可以往下查</strong>
+        <p>品名、材質、用途、規格、型錄資料完整，文件內容彼此一致。</p>
+      </div>
+      <div class="signal yellow">
+        <strong>黃燈：先補資料</strong>
+        <p>只有籠統品名，或不清楚成分、用途、型號、加工狀態。</p>
+      </div>
+      <div class="signal red">
+        <strong>紅燈：先停先問</strong>
+        <p>可能涉及管制、簽審、稅率差異大，或文件與型錄互相矛盾。</p>
+      </div>
+    </div>
+    <div class="warn">
+      新人看到黃燈或紅燈，不是要自己猜，而是補資料、問主管、留紀錄。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>自我檢查</h2>
+    <details class="quiz">
+      <summary>1. 客戶只寫 machine parts，下一步要做什麼？</summary>
+      <p>先補問實際貨品名稱、用途、材質、規格、型號、照片或型錄。不能直接用 parts 去猜稅則。</p>
+    </details>
+    <details class="quiz">
+      <summary>2. 貨品用在汽車上，就一定歸到車輛零附件嗎？</summary>
+      <p>不一定。還要看類註、章註與貨品本身功能，例如一般用金屬零件可能不歸車輛零附件。</p>
+    </details>
+    <details class="quiz">
+      <summary>3. 查到稅率後，為什麼還要看輸入規定？</summary>
+      <p>因為通關風險不只稅率，還可能有簽審、檢驗、檢疫、管制或其他主管機關文件。</p>
+    </details>
+    <details class="quiz">
+      <summary>4. 什麼情況要考慮稅則預先歸列？</summary>
+      <p>分類爭議大、稅率差異大、進口前需評估成本、或客戶希望降低通關爭議時，可以考慮申請。</p>
+    </details>
+    <details class="quiz">
+      <summary>5. 成套商品一定要把每一樣東西都分開報嗎？</summary>
+      <p>不一定。要先看是否符合成套商品條件，再判斷主要特性；如果不符合成套商品，才分開歸類。</p>
+    </details>
+    <details class="quiz">
+      <summary>6. 包裝盒和容器一定跟主貨同稅則嗎？</summary>
+      <p>不一定。特殊形狀、隨貨進口且適合長期使用的容器可能跟主貨走；可重複使用容器或一般容器可能要另外歸類。</p>
+    </details>
+    <div class="check">
+      能回答這些題目，就代表你已經抓到稅則查找的基本判斷方向。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>建議查詢入口</h2>
+    <ul>
+      <li><a href="https://hscode.customs.gov.tw/" target="_blank">財政部關務署貨品歸屬稅則查詢系統</a></li>
+      <li><a href="https://portal.sw.nat.gov.tw/APGQ/LoginFree?request_locale=zh_TW" target="_blank">關港貿單一窗口免證查詢服務</a></li>
+      <li><a href="https://web.customs.gov.tw/" target="_blank">財政部關務署網站</a></li>
+    </ul>
+    <div class="warn">
+      外部系統畫面可能會改版。找不到時，從關務署首頁的「重要資料查詢」或單一窗口的「稅則稅率」進入。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>返回與下一步</h2>
+    <ul>
+      <li><a href="新手_ver1.html">回新人教學首頁</a></li>
+      <li><a href="一般外貨進口.html">回一般外貨進口</a></li>
+      <li><a href="稅金計算.html">下一步：進口稅金計算</a></li>
+      <li><a href="常見錯誤.html">回常見錯誤與風險</a></li>
+      <li><a href="進口 WI-02 進口業務處理工作指導書.pdf">WI-02 正式文件</a></li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
